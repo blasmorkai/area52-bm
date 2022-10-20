@@ -29,5 +29,5 @@ pub enum QueryMsg {
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct GetCountResponse {
-    pub count:i32,
+    pub count:i64,
 }
