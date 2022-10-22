@@ -35,10 +35,7 @@ pub struct Traveler {
     pub cyberdized: bool,
 }
 
-#[derive(Serialize, Deserialize, JsonSchema)]
-pub struct SapienceResponse {
-    pub level: SapienceScale,
-}
+
 
 #[derive(Serialize, Deserialize, JsonSchema)]
 pub struct Sapient {
