@@ -1,5 +1,5 @@
 [package]
-name = "test2-area52"
+name = "area52bm"
 version = "0.1.0"
 authors = ["Blas Morkai <blas.morkai@gmail.com>"]
 edition = "2021"

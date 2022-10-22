@@ -1,6 +1,6 @@
 pub mod species;
-mod msg;
-mod state;
+pub mod msg;
+pub mod state;
 mod contract;
 mod error;
 

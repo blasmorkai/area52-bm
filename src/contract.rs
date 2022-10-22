@@ -9,14 +9,14 @@ use crate::species::{Traveler, SapienceScale, Sapient};
 
 /////////////////////////////////////////////////////////////////////////////////////////
 #[entry_point]
-pub fn query(deps: Deps, _env: Env, msg: QueryMsg) -> StdResult<cosmwasm_std::Binary> {
+pub fn query(deps: Deps, _env: Env, msg: QueryMsg) -> StdResult<Binary> {
     match msg {
         QueryMsg::JumpRingPreCheck { traveler } => jumpring_check(traveler),
         QueryMsg::MinimumSapience {} => minimum_sapience(deps),
     }
 }
 
-pub fn minimum_sapience(deps: Deps) -> StdResult<cosmwasm_std::Binary> {
+pub fn minimum_sapience(deps: Deps) -> StdResult<Binary> {
     let state = config_read(deps.storage).load()?;
     let out = to_binary(&SapienceResponse {
         level: state.minimum_sapience,
@@ -24,7 +24,7 @@ pub fn minimum_sapience(deps: Deps) -> StdResult<cosmwasm_std::Binary> {
     Ok(out)
 }
 
-pub fn jumpring_check(traveler: Traveler) -> StdResult<cosmwasm_std::Binary> {
+pub fn jumpring_check(traveler: Traveler) -> StdResult<Binary> {
     let out = to_binary(&JumpRingCheckResponse {
         valid: traveler.cyberdized,
     })?;
@@ -81,10 +81,10 @@ pub fn set_planet_name(
     }
 
     state.planet_name = to;
-
+    // state.planet_name = to.clone();   // In case we want the state to have its own copy, retaining to its ownership
     config(deps.storage).save(&state)?;
     Ok(Response::new().add_attribute("action", "set_planet_name"))
-    // state.planet_name = to.clone();
+
 
 }
 
